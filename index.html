@@ -8,13 +8,6 @@
     <script>
         function generateCombinations(number) {
             document.getElementById('result').innerHTML = ''
-            if (number.length < 6) {
-                alert('กรอกข้อมูลไม่ครบ 6 ตำแหน่ง')
-                return;
-            } else if (number.length > 6) {
-                alert('กรอกข้อมูลเกิน 6 ตำแหน่ง')
-                return;
-            }
             const digits = number.toString().split('');
             const combinations = [];
 
