@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number</title>
+    <script>
+        function generateCombinations(number) {
+            document.getElementById('result').innerHTML = ''
+            if (number.length < 6) {
+                alert('กรอกข้อมูลไม่ครบ 6 ตำแหน่ง')
+                return;
+            } else if (number.length > 6) {
+                alert('กรอกข้อมูลเกิน 6 ตำแหน่ง')
+                return;
+            }
+            const digits = number.toString().split('');
+            const combinations = [];
+
+            for (let i = 0; i < digits.length; i++) {
+                for (let j = 0; j < digits.length; j++) {
+                    for (let k = 0; k < digits.length; k++) {
+                        if (i !== j && j !== k && i !== k) {
+                            const combination = `${digits[i]}${digits[j]}${digits[k]}`;
+                            const sortedCombination = combination.split('').sort().join('');
+                            if (!combinations.includes(sortedCombination)) {
+                                combinations.push(sortedCombination);
+                            }
+                        }
+                    }
+                }
+            }
+
+            let combinationsSet = (new Set(combinations));
+
+            combinationsSet.forEach(element => {
+                document.getElementById('result').innerHTML += '<li><span class = "pl-1">' + element + '</span><input type="checkbox" name="" id=""></li>'
+            });
+        }
+    </script>
+    <style>
+        .pl-1 {
+            padding-left: 1rem;
+            color: black;
+        }
+
+        li {
+            color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" name="" id="userInput" minlength="6" maxlength="6">
+        <button onclick="generateCombinations(document.getElementById('userInput').value)">คำนวณ</button>
+        <button onclick="document.getElementById('result').innerHTML = ''">ล้างค่า</button>
+    </div>
+    <ol id="result"></ol>
+</body>
+
+</html>
